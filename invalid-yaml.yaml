@@ -7,7 +7,7 @@ spec:
   - name: shared-workspace
   tasks:
   - name: clone-repository
-taskRef:
+    taskRef:
       name: git-clone
       kind: ClusterTask
     workspaces:
