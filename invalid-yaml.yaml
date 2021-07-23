@@ -1,5 +1,13 @@
-- name: clone-repository
-    taskRef:
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: markdown-linting-pipeline
+spec:
+  workspaces:
+  - name: shared-workspace
+  tasks:
+  - name: clone-repository
+taskRef:
       name: git-clone
       kind: ClusterTask
     workspaces:
