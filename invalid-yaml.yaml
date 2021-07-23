@@ -1,0 +1,24 @@
+- name: clone-repository
+    taskRef:
+      name: git-clone
+      kind: ClusterTask
+    workspaces:
+      - name: output
+        workspace: shared-workspace
+    params:
+    - name: url
+      value: https://github.com/upslopeio/lint-markdown-files.git
+    - name: deleteExisting
+      value: "true"
+  - name: lint-file
+    taskRef:
+      name: markdown-lint
+      kind: Task
+    runAfter:
+        - clone-repository
+    workspaces:
+      - name: shared-workspace
+        workspace: shared-workspace
+    params:
+      - name: args
+        value: ["."]
